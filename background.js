@@ -98,35 +98,14 @@ function clampTooltip(x, y) {
   tooltip.style.top  = top  + 'px';
 }
 
-let typeTimer = null;
-let currentTooltipName = '';
-
 function showTooltip(name, x, y) {
-  if (name === currentTooltipName && tooltip.style.display === 'block') return;
-  clearInterval(typeTimer);
-  currentTooltipName = name;
-  tooltip.textContent = '';
+  tooltip.textContent = name;
   tooltip.style.display = 'block';
   clampTooltip(x, y);
-  let i = 0;
-  typeTimer = setInterval(() => {
-    if (i < name.length) {
-      tooltip.textContent += name[i];
-      clampTooltip(x, y);
-      i++;
-    } else {
-      clearInterval(typeTimer);
-    }
-  }, 30);
 }
 
 function moveTooltip(x, y) { clampTooltip(x, y); }
-
-function hideTooltip() {
-  clearInterval(typeTimer);
-  currentTooltipName = '';
-  tooltip.style.display = 'none';
-}
+function hideTooltip()      { tooltip.style.display = 'none'; }
 
 /* ── Media element creation ──────────────────────────────── */
 
