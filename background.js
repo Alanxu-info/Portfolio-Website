@@ -87,8 +87,18 @@ const tooltip = document.createElement('div');
 tooltip.id = 'bg-tooltip';
 document.body.appendChild(tooltip);
 
-function showTooltip(name, x, y) { tooltip.textContent = name; tooltip.style.display = 'block'; tooltip.style.left = (x + 12) + 'px'; tooltip.style.top = (y + 12) + 'px'; }
-function moveTooltip(x, y)       { tooltip.style.left = (x + 12) + 'px'; tooltip.style.top = (y + 12) + 'px'; }
+function clampTooltip(x, y) {
+  let left = x + 12, top = y + 12;
+  const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+  if (left + tw > window.innerWidth)  left = x - tw - 4;
+  if (top + th > window.innerHeight)  top  = y - th - 4;
+  if (left < 0) left = 4;
+  if (top  < 0) top  = 4;
+  tooltip.style.left = left + 'px';
+  tooltip.style.top  = top  + 'px';
+}
+function showTooltip(name, x, y) { tooltip.textContent = name; tooltip.style.display = 'block'; clampTooltip(x, y); }
+function moveTooltip(x, y)       { clampTooltip(x, y); }
 function hideTooltip()            { tooltip.style.display = 'none'; }
 
 /* ── Media element creation ──────────────────────────────── */

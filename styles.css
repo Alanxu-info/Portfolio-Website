@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  background-color: #ffffff;
+}
+
 html, body {
   width: 100%;
   height: 100%;
@@ -330,6 +334,11 @@ body {
 
   #project-overlay {
     width: calc(100vw - 20px);
+  }
+
+  #info-panel.is-open {
+    height: auto;
+    max-height: 50vh;
   }
 }
 
