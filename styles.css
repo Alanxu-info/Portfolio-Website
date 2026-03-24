@@ -138,7 +138,7 @@ body {
 /* ── Label (clickable button) ────────────────────────────── */
 
 .panel-label {
-  padding: 4px 7px;
+  padding: 5px 7px;
   cursor: pointer;
   user-select: none;
   white-space: nowrap;
