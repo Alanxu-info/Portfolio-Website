@@ -13,6 +13,7 @@ html {
 body {
   width: 100%;
   height: 100%;
+  overflow: hidden;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   line-height: 15px;
@@ -25,6 +26,7 @@ body {
   color: #000000;
   -webkit-tap-highlight-color: transparent;
 }
+
 
 /* ── Background grid ─────────────────────────────────────── */
 
@@ -103,9 +105,8 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
-  overflow: hidden;
   z-index: 1;
-  pointer-events: none; /* let empty-space clicks fall through to bg-grid */
+  pointer-events: none;
 }
 
 .panel,
@@ -172,7 +173,7 @@ body {
 }
 
 
-/* ── Info panel: fixed 500px height, scrollable content ─── */
+/* ── Info panel ──────────────────────────────────────────── */
 
 #info-panel {
   display: flex;
@@ -206,7 +207,7 @@ body {
 }
 
 
-/* ── Works panel: hug height, label top-left ─────────────── */
+/* ── Works panel ─────────────────────────────────────────── */
 
 #works-content {
   padding: 3px 5px;
@@ -326,6 +327,13 @@ body {
   gap: 10px;
 }
 
+#overlay-body > .overlay-description {
+  margin-bottom: 30px;
+}
+
+
+/* ── Mobile ──────────────────────────────────────────────── */
+
 @media (max-width: 768px) {
   .media-gallery {
     grid-template-columns: repeat(2, 1fr);
@@ -333,10 +341,8 @@ body {
 
   #project-overlay {
     width: calc(100vw - 20px);
+    height: auto;
+    top: calc(max(10px, env(safe-area-inset-top)) + 32px);
+    bottom: 0;
   }
-
-}
-
-#overlay-body > .overlay-description {
-  margin-bottom: 30px;
 }

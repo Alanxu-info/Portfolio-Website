@@ -3,53 +3,44 @@ const worksPanel = document.getElementById('works-panel');
 
 const allPanels = [infoPanel, worksPanel];
 
-// Store each panel's collapsed size so closePanel can animate back to it
 const collapsedSize = new Map();
 
 function openPanel(panel) {
   const content = panel.querySelector('.panel-content');
 
-  // Capture collapsed size (label only, content still display:none)
   const startW = panel.offsetWidth;
   const startH = panel.offsetHeight;
   collapsedSize.set(panel.id, { w: startW, h: startH });
 
-  // Put content in layout so we can measure the full height
   content.style.display = 'block';
 
   const targetH = panel.id === 'info-panel'
     ? window.innerHeight * 0.5
     : panel.scrollHeight;
 
-  // Pin to collapsed size — overflow:hidden keeps content invisible
   panel.style.width  = startW + 'px';
   panel.style.height = startH + 'px';
 
-  void panel.offsetWidth; // commit start state before animating
+  void panel.offsetWidth;
 
-  // Animate to expanded size
   panel.classList.add('is-open');
   panel.style.width  = '300px';
   panel.style.height = targetH + 'px';
 
   setTimeout(() => {
-    panel.style.width  = '';
-    // Keep inline height to avoid re-triggering CSS transition
-    // (CSS value may differ slightly from computed px)
+    panel.style.width = '';
   }, 350);
 }
 
 function closePanel(panel) {
-  const content  = panel.querySelector('.panel-content');
-  const saved    = collapsedSize.get(panel.id);
+  const content = panel.querySelector('.panel-content');
+  const saved   = collapsedSize.get(panel.id);
 
-  // Pin current expanded size as inline so we can animate from it
   panel.style.width  = panel.offsetWidth  + 'px';
   panel.style.height = panel.offsetHeight + 'px';
 
-  void panel.offsetWidth; // commit
+  void panel.offsetWidth;
 
-  // Remove class, animate inline styles back to collapsed size
   panel.classList.remove('is-open');
   panel.style.width  = saved ? saved.w + 'px' : '';
   panel.style.height = saved ? saved.h + 'px' : '';
@@ -77,7 +68,6 @@ function togglePanel(panel) {
 document.getElementById('alan-xu-btn').addEventListener('click', () => { closeAll(); closeOverlay(); });
 document.getElementById('info-btn').addEventListener('click',   () => togglePanel(infoPanel));
 document.getElementById('works-btn').addEventListener('click',  () => togglePanel(worksPanel));
-// Archive: no action yet
 
 
 /* ── Load JSON data ─────────────────────────────────────── */
@@ -91,7 +81,6 @@ async function loadData() {
     const worksData = await worksRes.json();
     const infoData  = await infoRes.json();
 
-    // Render works list
     const ul = document.createElement('ul');
     ul.className = 'project-list';
     worksData.projects.forEach(({ title, slug }) => {
@@ -113,7 +102,6 @@ async function loadData() {
     });
     document.getElementById('works-content').appendChild(ul);
 
-    // Render info sections
     const infoContent = document.getElementById('info-content');
     infoData.sections.forEach(section => {
       const div = document.createElement('div');
@@ -161,7 +149,6 @@ async function openOverlay(title, slug) {
     const res  = await fetch(`projects/${slug}/data.json`);
     const data = await res.json();
 
-    // Guard against race: user clicked a different project while fetching
     if (slug !== currentSlug) return;
 
     const mediaElements = [];
@@ -225,7 +212,6 @@ async function openOverlay(title, slug) {
       }
     });
 
-    // Reveal media one by one after overlay transition ends
     setTimeout(() => {
       mediaElements.forEach((el, i) => {
         setTimeout(() => el.classList.add('visible'), i * 80);

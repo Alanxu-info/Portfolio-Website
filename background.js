@@ -15,7 +15,6 @@ let targetX  = 0, targetY  = 0;
 let vx = DEFAULT_VX, vy = DEFAULT_VY;
 
 let isDragging  = false;
-let didDrag     = false;
 let lastClientX, lastClientY;
 let dragVX = 0, dragVY = 0;
 
@@ -98,9 +97,15 @@ function clampTooltip(x, y) {
   tooltip.style.left = left + 'px';
   tooltip.style.top  = top  + 'px';
 }
-function showTooltip(name, x, y) { tooltip.textContent = name; tooltip.style.display = 'block'; clampTooltip(x, y); }
-function moveTooltip(x, y)       { clampTooltip(x, y); }
-function hideTooltip()            { tooltip.style.display = 'none'; }
+
+function showTooltip(name, x, y) {
+  tooltip.textContent = name;
+  tooltip.style.display = 'block';
+  clampTooltip(x, y);
+}
+
+function moveTooltip(x, y) { clampTooltip(x, y); }
+function hideTooltip()      { tooltip.style.display = 'none'; }
 
 /* ── Media element creation ──────────────────────────────── */
 
@@ -247,11 +252,14 @@ function isOverlayOpen() {
   return document.getElementById('project-overlay').classList.contains('is-open');
 }
 
+const isTouchDevice = 'ontouchstart' in window;
+
 function bindDrag() {
+  /* ── Mouse (desktop) ── */
+
   container.addEventListener('mousedown', e => {
     if (isOverlayOpen()) return;
     isDragging = true;
-    didDrag = false;
     lastClientX = e.clientX; lastClientY = e.clientY;
     dragVX = dragVY = 0;
     container.style.cursor = 'grabbing';
@@ -261,7 +269,6 @@ function bindDrag() {
     if (!isDragging) return;
     const dx = e.clientX - lastClientX;
     const dy = e.clientY - lastClientY;
-    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
     targetX += dx; targetY += dy;
     dragVX = dx; dragVY = dy;
     lastClientX = e.clientX; lastClientY = e.clientY;
@@ -272,8 +279,16 @@ function bindDrag() {
     isDragging = false;
     container.style.cursor = 'grab';
     vx = dragVX; vy = dragVY;
-    if (!didDrag && !isOverlayOpen() && typeof closeAll === 'function') closeAll();
   });
+
+  /* ── Click to collapse panels (desktop only) ── */
+
+  container.addEventListener('click', e => {
+    if (isTouchDevice || isOverlayOpen()) return;
+    if (typeof closeAll === 'function') closeAll();
+  });
+
+  /* ── Wheel ── */
 
   container.addEventListener('wheel', e => {
     if (isOverlayOpen()) return;
@@ -284,13 +299,16 @@ function bindDrag() {
     vy = -e.deltaY * 0.1;
   }, { passive: false });
 
+  /* ── Touch (mobile) ── */
+
   container.addEventListener('touchstart', e => {
     if (isOverlayOpen()) return;
     const t = e.touches[0];
     isDragging = true;
-    didDrag = false;
     lastClientX = t.clientX; lastClientY = t.clientY;
     dragVX = dragVY = 0;
+    // Collapse panels on any touch (tap or drag)
+    if (typeof closeAll === 'function') closeAll();
   }, { passive: true });
 
   window.addEventListener('touchmove', e => {
@@ -298,7 +316,6 @@ function bindDrag() {
     const t = e.touches[0];
     const dx = t.clientX - lastClientX;
     const dy = t.clientY - lastClientY;
-    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) didDrag = true;
     targetX += dx; targetY += dy;
     dragVX = dx; dragVY = dy;
     lastClientX = t.clientX; lastClientY = t.clientY;
@@ -308,7 +325,6 @@ function bindDrag() {
     if (!isDragging) return;
     isDragging = false;
     vx = dragVX; vy = dragVY;
-    if (!didDrag && !isOverlayOpen() && typeof closeAll === 'function') closeAll();
   });
 }
 
