@@ -18,6 +18,11 @@ let isDragging  = false;
 let lastClientX, lastClientY;
 let dragVX = 0, dragVY = 0;
 
+let mouseX = -9999, mouseY = -9999;
+const HOVER_RADIUS = 250;
+const MAX_SCALE    = 1.15;
+const SCALE_LERP   = 0.08;
+
 const knownSrcs = new Set();
 const container  = document.getElementById('bg-grid');
 
@@ -164,6 +169,7 @@ function buildGrid() {
       tile.className = 'bg-tile';
       tile._col = c;
       tile._row = r;
+      tile._scale = 1;
       positionTile(tile);
       container.appendChild(tile);
       tiles.push(tile);
@@ -219,6 +225,7 @@ async function initBackground() {
 
   buildGrid();
   requestAnimationFrame(tick);
+  bindProximity();
   bindDrag();
   setInterval(checkForNewMedia, POLL_MS);
 }
@@ -234,16 +241,32 @@ function tick() {
   }
   offsetX += (targetX - offsetX) * LERP_DRAG;
   offsetY += (targetY - offsetY) * LERP_DRAG;
-  tiles.forEach(positionTile);
-  requestAnimationFrame(tick);
-}
 
-function positionTile(tile) {
   const totalW = numCols * STEP;
   const totalH = numRows * STEP;
-  const x = ((tile._col * STEP + offsetX) % totalW + totalW) % totalW - STEP;
-  const y = ((tile._row * STEP + offsetY) % totalH + totalH) % totalH - STEP;
-  tile.style.transform = `translate(${x}px, ${y}px)`;
+
+  for (let i = 0; i < tiles.length; i++) {
+    const tile = tiles[i];
+    const x = ((tile._col * STEP + offsetX) % totalW + totalW) % totalW - STEP;
+    const y = ((tile._row * STEP + offsetY) % totalH + totalH) % totalH - STEP;
+
+    const cx = x + TILE_SIZE * 0.5;
+    const cy = y + TILE_SIZE * 0.5;
+    const dx = mouseX - cx;
+    const dy = mouseY - cy;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+    const targetScale = dist < HOVER_RADIUS
+      ? 1 + (MAX_SCALE - 1) * (1 - dist / HOVER_RADIUS)
+      : 1;
+
+    tile._scale += (targetScale - tile._scale) * SCALE_LERP;
+
+    const s = tile._scale;
+    tile.style.transform = `translate(${x}px, ${y}px) scale(${s})`;
+    tile.style.zIndex = s > 1.005 ? 1 : '';
+  }
+
+  requestAnimationFrame(tick);
 }
 
 /* ── Drag & scroll ───────────────────────────────────────── */
@@ -253,6 +276,17 @@ function isOverlayOpen() {
 }
 
 const isTouchDevice = 'ontouchstart' in window;
+
+function bindProximity() {
+  window.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  window.addEventListener('mouseleave', () => {
+    mouseX = -9999;
+    mouseY = -9999;
+  });
+}
 
 function bindDrag() {
   /* ── Mouse (desktop) ── */
