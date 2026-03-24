@@ -230,6 +230,14 @@ async function initBackground() {
   setInterval(checkForNewMedia, POLL_MS);
 }
 
+function positionTile(tile) {
+  const totalW = numCols * STEP;
+  const totalH = numRows * STEP;
+  const x = ((tile._col * STEP + offsetX) % totalW + totalW) % totalW - STEP;
+  const y = ((tile._row * STEP + offsetY) % totalH + totalH) % totalH - STEP;
+  tile.style.transform = `translate(${x}px, ${y}px)`;
+}
+
 /* ── Animation tick ──────────────────────────────────────── */
 
 function tick() {
