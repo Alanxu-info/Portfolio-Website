@@ -61,6 +61,10 @@ function togglePanel(panel) {
   if (panel.classList.contains('is-open')) {
     closePanel(panel);
   } else {
+    // Mobile: close overlay when opening info panel
+    if (window.innerWidth <= 768 && panel === infoPanel && overlay.classList.contains('is-open')) {
+      closeOverlay();
+    }
     openPanel(panel);
   }
 }
@@ -142,6 +146,12 @@ async function openOverlay(title, slug) {
 
   currentSlug = slug;
   overlayBody.innerHTML = '';
+
+  // Mobile: collapse info panel when opening overlay
+  if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) {
+    closePanel(infoPanel);
+  }
+
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
 
