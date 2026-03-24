@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alan Xu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="bg-grid"></div>
+  <div class="page">
+
+    <!-- Top Left: Alan Xu — collapses all panels, no live state -->
+    <div class="panel top-left" id="alan-xu-panel">
+      <div class="panel-label h2" id="alan-xu-btn">Alan Xu</div>
+    </div>
+
+    <!-- Top Right: Info -->
+    <div class="panel top-right" id="info-panel">
+      <div class="panel-label h2" id="info-btn">Info</div>
+      <div class="panel-content" id="info-content"></div>
+    </div>
+
+    <!-- Bottom Left: Works — label at top, content below -->
+    <div class="panel bottom-left" id="works-panel">
+      <div class="panel-label h2" id="works-btn">Works</div>
+      <div class="panel-content" id="works-content"></div>
+    </div>
+
+    <!-- Bottom Right: Archive — no expansion -->
+    <div class="panel bottom-right" id="archive-panel">
+      <div class="panel-label h2" id="archive-btn">Archive</div>
+    </div>
+
+  </div>
+
+  <!-- Project overlay -->
+  <div id="project-overlay">
+    <button id="overlay-close">×</button>
+    <div id="overlay-body"></div>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="background.js"></script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "sections": [
+    {
+      "label": "Current Location:",
+      "content": "Los Angeles"
+    },
+    {
+      "label": "Specialization:",
+      "content": "Branding, Motion, Typography"
+    },
+    {
+      "label": "Short Bio:",
+      "content": "Graphic design is my passion"
+    },
+    {
+      "label": "Education:",
+      "content": "BFA from ArtCenter College of Design"
+    },
+    {
+      "label": "Awards:",
+      "content": "Blah Blah Blah"
+    },
+    {
+      "label": "Press",
+      "content": "Blah Blah Blah"
+    },
+    {
+      "label": "Exhibitions",
+      "content": "Blah Blah Blah"
+    }
+  ]
+}

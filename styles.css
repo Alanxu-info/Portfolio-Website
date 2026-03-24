@@ -1,0 +1,334 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  padding: 10px;
+  background-color: #ffffff;
+  color: #000000;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ── Background grid ─────────────────────────────────────── */
+
+#bg-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  cursor: grab;
+  filter: blur(0px);
+  transition: filter 0.4s ease;
+}
+
+#bg-grid:active {
+  cursor: grabbing;
+}
+
+#bg-grid.blurred {
+  filter: blur(20px);
+}
+
+.bg-tile {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.bg-tile.visible {
+  opacity: 1;
+}
+
+.bg-tile video,
+.bg-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-user-drag: none;
+}
+
+/* Hide Safari's native play-button overlay on muted background videos */
+.bg-tile video::-webkit-media-controls,
+.bg-tile video::-webkit-media-controls-panel,
+.bg-tile video::-webkit-media-controls-start-playback-button {
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+#bg-tooltip {
+  position: fixed;
+  display: none;
+  background-color: #D7D7D7;
+  padding: 3px 5px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  line-height: 15px;
+  pointer-events: none;
+  z-index: 50;
+  white-space: nowrap;
+}
+
+
+/* ── Page & panels sit above background ──────────────────── */
+
+.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none; /* let empty-space clicks fall through to bg-grid */
+}
+
+.panel,
+#project-overlay {
+  pointer-events: auto;
+}
+
+
+/* ── Panels ─────────────────────────────────────────────── */
+
+.panel {
+  position: absolute;
+  background-color: #D7D7D7;
+  overflow: hidden;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.top-left     { top: 0;    left: 0;  }
+.top-right    { top: 0;    right: 0; }
+.bottom-left  { bottom: 0; left: 0;  }
+.bottom-right { bottom: 0; right: 0; }
+
+.panel.is-open {
+  width: 300px;
+  max-width: calc(100vw - 20px);
+}
+
+
+/* ── Label (clickable button) ────────────────────────────── */
+
+.panel-label {
+  padding: 4px 7px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.panel-label:hover {
+  text-decoration: underline;
+}
+
+/* Live state: underline when the panel is open */
+#info-panel.is-open  > .panel-label,
+#works-panel.is-open > .panel-label {
+  text-decoration: underline;
+}
+
+
+/* ── Info label stays right-aligned ─────────────────────── */
+
+#info-panel > .panel-label {
+  text-align: right;
+}
+
+
+/* ── Panel content ───────────────────────────────────────── */
+
+.panel-content {
+  display: none;
+}
+
+.panel.is-open .panel-content {
+  display: block;
+}
+
+
+/* ── Info panel: fixed 500px height, scrollable content ─── */
+
+#info-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+#info-panel.is-open {
+  height: 500px;
+}
+
+#info-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 3px 5px;
+}
+
+.info-section {
+  margin-bottom: 15px;
+}
+
+.info-section:last-child {
+  margin-bottom: 0;
+}
+
+.info-label {
+  display: block;
+}
+
+.info-value {
+  display: block;
+}
+
+
+/* ── Works panel: hug height, label top-left ─────────────── */
+
+#works-content {
+  padding: 3px 5px;
+}
+
+.project-list {
+  list-style: none;
+}
+
+.project-list li {
+  line-height: 15px;
+  margin-bottom: 5px;
+}
+
+.project-list li:last-child {
+  margin-bottom: 0;
+}
+
+.project-list li a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.project-list li a:hover {
+  text-decoration: underline;
+}
+
+
+/* ── Typography ──────────────────────────────────────────── */
+
+.h1 {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.h2 {
+  font-size: 12px;
+  line-height: 14px;
+}
+
+.caption {
+  font-size: 12px;
+  line-height: 12px;
+  color: #909090;
+}
+
+
+/* ── Project overlay ─────────────────────────────────────── */
+
+#project-overlay {
+  position: fixed;
+  left: 50%;
+  bottom: 0;
+  width: 40vw;
+  height: 95vh;
+  background-color: #D7D7D7;
+  transform: translateX(-50%) translateY(100%);
+  transition: transform 0.4s ease;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+#project-overlay.is-open {
+  transform: translateX(-50%) translateY(0);
+}
+
+#overlay-close {
+  position: absolute;
+  top: 4px;
+  right: 7px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 200;
+  font-family: inherit;
+  color: inherit;
+  padding: 4px 7px;
+  line-height: 1;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+#overlay-close:hover {
+  text-decoration: underline;
+}
+
+#overlay-body {
+  height: 100%;
+  overflow-y: auto;
+  padding: 15px;
+  scrollbar-width: none;
+}
+
+#overlay-body::-webkit-scrollbar {
+  display: none;
+}
+
+#overlay-body > * {
+  margin-bottom: 10px;
+}
+
+.media-item {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.media-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.media-gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .media-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #project-overlay {
+    width: calc(100vw - 20px);
+  }
+}
+
+#overlay-body > .overlay-description {
+  margin-bottom: 30px;
+}
