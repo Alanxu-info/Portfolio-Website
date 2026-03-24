@@ -78,16 +78,14 @@ body {
   transition: transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
-@media (hover: hover) {
-  .bg-tile:hover {
-    overflow: visible;
-    z-index: 1;
-  }
+.bg-tile.hovered {
+  overflow: visible;
+  z-index: 1;
+}
 
-  .bg-tile:hover video,
-  .bg-tile:hover img {
-    transform: scale(1.15);
-  }
+.bg-tile.hovered video,
+.bg-tile.hovered img {
+  transform: scale(1.15);
 }
 
 /* Hide Safari's native play-button overlay on muted background videos */
