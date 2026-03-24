@@ -4,28 +4,19 @@
   padding: 0;
 }
 
-html {
-  background-color: #ffffff;
+html, body {
   width: 100%;
   height: 100%;
-}
-
-body {
-  width: 100%;
-  height: 100%;
+  margin: 0;
+  padding: 0;
   overflow: hidden;
+  background-color: #ffffff;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   font-size: 12px;
   line-height: 15px;
-  padding: 10px;
-  padding-top: max(10px, env(safe-area-inset-top));
-  padding-bottom: max(10px, env(safe-area-inset-bottom));
-  padding-left: max(10px, env(safe-area-inset-left));
-  padding-right: max(10px, env(safe-area-inset-right));
-  background-color: #ffffff;
   color: #000000;
   -webkit-tap-highlight-color: transparent;
 }
@@ -107,6 +98,11 @@ body {
   position: relative;
   width: 100%;
   height: 100%;
+  padding: 10px;
+  padding-top: max(10px, env(safe-area-inset-top));
+  padding-bottom: max(10px, env(safe-area-inset-bottom));
+  padding-left: max(10px, env(safe-area-inset-left));
+  padding-right: max(10px, env(safe-area-inset-right));
   z-index: 1;
   pointer-events: none; /* let empty-space clicks fall through to bg-grid */
 }
