@@ -15,7 +15,7 @@ function openPanel(panel) {
   content.style.display = 'block';
 
   const targetH = panel.id === 'info-panel'
-    ? window.innerHeight * 0.5
+    ? window.innerHeight * (window.innerWidth <= 768 ? 0.5 : 0.4)
     : panel.scrollHeight;
 
   panel.style.width  = startW + 'px';

@@ -181,7 +181,7 @@ body {
 }
 
 #info-panel.is-open {
-  height: 50vh;
+  height: 40vh;
 }
 
 #info-content {
@@ -337,6 +337,10 @@ body {
 @media (max-width: 768px) {
   .media-gallery {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  #info-panel.is-open {
+    height: 50vh;
   }
 
   #project-overlay {
