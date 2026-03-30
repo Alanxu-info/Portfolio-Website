@@ -147,7 +147,10 @@ function buildGrid() {
   numRows = Math.ceil(window.innerHeight / STEP) + 3;
 
   const entries = [];
-  const recent = [];
+  const assigned = [];
+  for (let r = 0; r < numRows; r++) {
+    assigned[r] = [];
+  }
 
   for (let r = 0; r < numRows; r++) {
     for (let c = 0; c < numCols; c++) {
@@ -159,15 +162,24 @@ function buildGrid() {
       container.appendChild(tile);
       tiles.push(tile);
 
+      const nearby = new Set();
+      for (let dr = -5; dr <= 5; dr++) {
+        for (let dc = -5; dc <= 5; dc++) {
+          if (dr === 0 && dc === 0) continue;
+          const nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < numRows && nc >= 0 && nc < numCols && assigned[nr][nc]) {
+            nearby.add(assigned[nr][nc]);
+          }
+        }
+      }
       let item;
-      const available = media.filter(m => !recent.includes(m.src));
+      const available = media.filter(m => !nearby.has(m.src));
       if (available.length) {
         item = available[Math.floor(Math.random() * available.length)];
       } else {
         item = media[Math.floor(Math.random() * media.length)];
       }
-      recent.push(item.src);
-      if (recent.length > 5) recent.shift();
+      assigned[r][c] = item.src;
 
       const name = item.src.split('/').pop();
 
