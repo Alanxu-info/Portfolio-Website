@@ -163,18 +163,8 @@ body {
 
 /* ── Info panel ──────────────────────────────────────────── */
 
-#info-panel {
-  display: flex;
-  flex-direction: column;
-}
-
-#info-panel.is-open {
-  height: 40vh;
-}
 
 #info-content {
-  flex: 1;
-  overflow-y: auto;
   padding: 3px 5px;
 }
 
@@ -343,11 +333,7 @@ body {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  #info-panel.is-open {
-    height: 50vh;
-  }
-
-  #project-overlay {
+#project-overlay {
     width: calc(100vw - 20px);
     height: auto;
     top: 42px;
