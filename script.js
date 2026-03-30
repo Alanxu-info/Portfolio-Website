@@ -12,16 +12,21 @@ function openPanel(panel) {
   const startH  = panel.offsetHeight;
   collapsedSize.set(panel.id, { w: startW, h: startH });
 
+  // Measure target height at final width (off-screen)
+  panel.style.transition = 'none';
+  panel.style.width = '300px';
   content.style.display = 'block';
+  panel.classList.add('is-open');
+  const targetH = panel.scrollHeight;
 
-  const targetH = panel.id === 'info-panel'
-    ? document.getElementById('info-content').scrollHeight + infoPanel.querySelector('.panel-label').offsetHeight
-    : panel.scrollHeight;
-
+  // Reset to collapsed size
   panel.style.width  = startW + 'px';
   panel.style.height = startH + 'px';
+  panel.classList.remove('is-open');
   void panel.offsetWidth;
 
+  // Animate to target
+  panel.style.transition = '';
   panel.classList.add('is-open');
   panel.style.width  = '300px';
   panel.style.height = targetH + 'px';
