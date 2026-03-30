@@ -447,10 +447,11 @@ async function openOverlay(title, slug) {
         el.setAttribute('playsinline', '');
         el.style.width = '100%';
         el.style.display = 'block';
-      } else if (item.type === 'duo' || item.type === 'trio' || item.type === 'quad' || item.type === 'gallery' || item.type === 'gallery-5' || item.type === 'gallery-8') {
+      } else if (item.type === 'duo' || item.type === 'trio' || item.type === 'trio-mobile-solo' || item.type === 'quad' || item.type === 'gallery' || item.type === 'gallery-5' || item.type === 'gallery-8') {
         el = document.createElement('div');
         if (item.type === 'duo') el.className = 'media-duo';
         else if (item.type === 'trio') el.className = 'media-trio';
+        else if (item.type === 'trio-mobile-solo') el.className = 'media-trio media-trio-mobile-solo';
         else if (item.type === 'quad') el.className = 'media-quad';
         else if (item.type === 'gallery-5') el.className = 'media-gallery-5';
         else if (item.type === 'gallery-8') el.className = 'media-gallery-8';
@@ -478,13 +479,20 @@ async function openOverlay(title, slug) {
           el.appendChild(child);
           mediaElements.push(child);
         });
-      } else if (item.type === 'youtube') {
+      } else if (item.type === 'youtube' || item.type === 'youtube-autoplay') {
         el = document.createElement('div');
         el.style.cssText = 'position:relative;width:100%;aspect-ratio:16/9;';
         const iframe = document.createElement('iframe');
-        iframe.src = item.src + '?autoplay=0';
+        const sep = item.src.includes('?') ? '&' : '?';
+        if (item.type === 'youtube-autoplay') {
+          const videoId = item.src.split('/embed/')[1]?.split('?')[0] || '';
+          iframe.src = item.src + sep + 'autoplay=1&mute=1&playsinline=1&loop=1&playlist=' + videoId;
+          iframe.allow = 'autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        } else {
+          iframe.src = item.src + sep + 'autoplay=0';
+          iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        }
         iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
-        iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         iframe.allowFullscreen = true;
         el.appendChild(iframe);
       }

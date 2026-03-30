@@ -419,6 +419,10 @@ body {
     grid-template-columns: 1fr;
   }
 
+  .media-trio-mobile-solo {
+    grid-template-columns: 1fr;
+  }
+
   .resume-columns {
     grid-template-columns: 1fr;
   }

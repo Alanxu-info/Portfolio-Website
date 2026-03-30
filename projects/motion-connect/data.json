@@ -1,0 +1,28 @@
+{
+  "title": "Motion Connect",
+  "categories": ["Motion", "Branding"],
+  "description": "The campaign and title sequence for ArtCenter's Spring 2024 Motion Connect centers on form. The central challenge was creating a unified visual system across keynote speakers whose work differed drastically in style, medium, and tone. Initial attempts to blend their aesthetics resulted in inconsistency and visual noise.\n\nTo resolve this, I reduced all visual elements—color, shape, texture, and imagery—to their most fundamental forms. By removing stylistic excess, the system shifts focus from individual differences to shared structural qualities. A strict black-and-white palette was implemented to enforce cohesion and eliminate hierarchy between speakers.\n\nThis approach resulted in a distilled visual language that unifies diverse content into a singular, memorable system.",
+  "media": [
+    { "type": "youtube", "src": "https://www.youtube.com/embed/3RA-d5vpsBA" },
+    { "type": "youtube-autoplay", "src": "https://www.youtube.com/embed/hToR_RtVKZE" },
+    {
+      "type": "trio-mobile-solo",
+      "items": ["media/MC-1.mp4", "media/MC-2.mp4", "media/MC-3.mp4"]
+    },
+    { "type": "image", "src": "media/MC-4.png" },
+    { "type": "video", "src": "media/MC-5.mp4" },
+    { "type": "image", "src": "media/MC-6.jpeg" },
+    {
+      "type": "duo",
+      "items": ["media/MC-7.jpeg", "media/MC-8.jpeg"]
+    },
+    {
+      "type": "duo",
+      "items": ["media/MC-9.jpeg", "media/MC-10.jpeg"]
+    },
+    {
+      "type": "duo",
+      "items": ["media/MC-11.jpeg", "media/MC-12.jpeg"]
+    }
+  ]
+}
