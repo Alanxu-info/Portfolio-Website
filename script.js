@@ -199,10 +199,143 @@ function openResumeOverlay() {
   overlayBody.innerHTML = '';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
-  const img = document.createElement('img');
-  img.src = 'Other Assets/AX_Resume_26.png';
-  img.style.cssText = 'width:100%;display:block;';
-  overlayBody.appendChild(img);
+  const resumeData = [
+    {
+      section: 'Education',
+      type: 'detailed',
+      entries: [
+        { date: 'Sept 2020 – April 2026', title: 'ArtCenter College of Design', location: 'Pasadena, CA', desc: 'Bachelor of Fine Arts in Graphic Design' },
+        { date: 'Sept 2019 – May 2020', title: 'Woodbury University', location: 'Burbank, CA', desc: 'Bachelor of Interdisciplinary Study' }
+      ]
+    },
+    {
+      section: 'Experience',
+      type: 'detailed',
+      entries: [
+        { date: 'Sept 2020 – Ongoing', title: 'Freelance Graphic & Motion Designer', location: 'Independent', desc: 'Design print, motion, interaction, and brand systems for startups and agencies in gaming, tech, fine art, and entertainment.' },
+        { date: 'Jan 2020 – April 2026', title: 'Teaching Assistant', location: 'ArtCenter College of Design | Los Angeles, CA', desc: 'Assisted faculty across undergraduate and graduate design courses, leading critiques and supporting concept and system development across print, motion, and transmedia. Provided technical and conceptual guidance during reviews and production.' },
+        { date: 'Jan 2026 – Feb 2026 / Feb 2024 – Mar 2024', title: 'Freelance Graphic Designer', location: 'Massive Assembly | Los Angeles, CA', desc: 'Developed brand identity systems for Riot Games\u2019 2024 VALORANT World Championship Tour and League of Legends MSI 26, producing scalable assets for global event branding.' },
+        { date: 'Oct 2025 – Dec 2025', title: 'Design Residency', location: 'Fork | Seoul, Korea', desc: 'Developed original work with guidance from designer Moonsick Gang from research and experimentation through production and public exhibition.' },
+        { date: 'May 2025 – Aug 2025', title: 'Berlin Study Away', location: 'ArtCenter College of Design | Berlin, Germany', desc: 'Developed a body of design work informed by direct engagement with research on Berlin\u2019s cultural, social, and urban infrastructures during a three-month study-away semester.' },
+        { date: 'Jan 2025 – May 2025', title: 'Freelance Junior Motion Designer', location: 'Hornet | New York, NY', desc: 'Designed and animated motion graphics for internal and external projects in collaboration with the studio team. Contributed to client-facing work for brands including Apple, Sonic, and Buffalo Wild Wings.' },
+        { date: 'Jan 2025 – May 2025', title: 'Freelance Graphic & Motion Designer', location: '10 Summers/DJ Mustard | Los Angeles, CA', desc: 'Designed brand and identity system for DJ Mustard, including logo, typography, 2D and 3D animation, vinyl album artwork, title cards, and supporting visual assets.' },
+        { date: 'May 2021 – April 2025', title: 'Graphic Design Department Events Team Lead', location: 'ArtCenter College of Design | Los Angeles, CA', desc: 'Designed and managed the ArtCenter Designer Speaker Series, coordinating outreach to international designers and producing promotional assets for department events and communications.' },
+        { date: 'April 2024 – Aug 2024', title: 'Sponsored Studio', location: 'Samsung x ArtCenter | Los Angeles, CA', desc: 'Collaborated cross-disciplinarily on a hypothetical Samsung Galaxy campaign, designing a complete brand identity system to support product concepts and visuals.' },
+        { date: 'May 2023 – Sept 2023', title: 'Graphic Design Intern', location: 'Massive Assembly', desc: 'Designed a 250-page process book documenting four cinematic projects from concept to final render. Created internal motion assets for presentations and communications.' },
+        { date: 'Jan 2022 – May 2022', title: 'Orientation Leader', location: 'ArtCenter College of Design | Los Angeles, CA', desc: 'Assisted incoming students in navigating the academic, social, and cultural environment of ArtCenter. Designed digital assets to support orientation programming and communications.' },
+        { date: 'Jan 2021 – Jan 2022', title: 'Graphic Design Representative', location: 'ArtCenter College of Design | Los Angeles, CA', desc: 'Organized events and workshops, addressed student feedback with strategic solutions, and collaborated with other department representatives and chairs to enhance the ArtCenter experience.' }
+      ]
+    },
+    {
+      section: 'Awards & Recognition',
+      type: 'simple',
+      entries: [
+        { date: '2025', text: 'Communication Arts, Typography Annual' },
+        { date: '2025', text: 'Communication Arts Typography Annual, Shortlist' },
+        { date: '2024', text: 'Communication Arts, Design Annual' },
+        { date: '2024', text: 'Communication Arts, Design Annual Shortlist' },
+        { date: '2024', text: 'World\u2019s Best Typography 45, Judge\u2019s Choice' },
+        { date: '2024', text: 'TDC Young Ones, Top 3' },
+        { date: '2024', text: 'TDC Young Ones, Winner Brand & Identity' },
+        { date: '2024', text: 'TDC Young Ones, Winner Motion' },
+        { date: '2024', text: 'ADC Young Ones, Merit' },
+        { date: '2024', text: 'C2A, Best of Best in Animation' },
+        { date: '2024', text: 'C2A, Winner Brand Identity' },
+        { date: '2024', text: 'C2A, Winner Brand Identity' },
+        { date: '2024', text: 'Kyoto Global Design Awards, Visual Winner' },
+        { date: '2024', text: 'Kyoto Global Design Awards, Visual Winner' },
+        { date: '2024', text: 'Kyoto Global Design Awards, Visual Winner' },
+        { date: '2024', text: 'Core77, Communication Design Student Notable' },
+        { date: '2024', text: 'Graphis New Talent, Platinum' },
+        { date: '2024', text: 'Graphis New Talent, Silver' },
+        { date: '2024', text: 'Graphis New Talent, Honorable Mention' },
+        { date: '2024', text: 'Graphis New Talent, Honorable Mention' },
+        { date: '2024', text: 'DNA Paris, Winner Communication' },
+        { date: '2024', text: 'DNA Paris, Winner Branding Communication' },
+        { date: '2024', text: 'DNA Paris, Winner Typography' },
+        { date: '2024', text: 'DNA Paris, Winner Typography' },
+        { date: '2024', text: 'Design MasterPrize, Best of Best Brand Identity' },
+        { date: '2024', text: 'Design MasterPrize, Honorable Mention Animation' },
+        { date: '2024', text: 'IDA, Bronze' },
+        { date: '2024', text: 'Indigo Design Award, Gold Computer Animation' },
+        { date: '2024', text: 'Indigo Design Award, Silver Branding x2' },
+        { date: '2024', text: 'Cidea Design Award, NewStar Award' },
+        { date: '2024', text: 'Cidea Design Award, Design Award' },
+        { date: '2024', text: 'World Brand Design Society, Commended' },
+        { date: '2024', text: 'World Brand Design Society, Commended' },
+        { date: '2024', text: 'World Brand Design Society, Bronze' },
+        { date: '2023', text: 'Core77, Brand and Identity Student Winner' },
+        { date: '2023', text: 'Communication Arts, Shortlist' },
+        { date: '2023', text: 'Graphis New Talent, Gold' },
+        { date: '2023', text: 'Graphis New Talent, Gold' }
+      ]
+    },
+    {
+      section: 'Exhibition',
+      type: 'simple',
+      entries: [
+        { date: '2026', text: 'Fork Unfolding #3, Seoul Korea' },
+        { date: '2024\u201325', text: 'TDC70 Traveling Exhibition, ENCO' },
+        { date: '2024', text: 'HMCT Gallery, Another Specimen Poster, LA' },
+        { date: '2021\u201322', text: 'ArtCenter Student Gallery, SU21 Poster, LA' }
+      ]
+    },
+    {
+      section: 'Press',
+      type: 'simple',
+      entries: [
+        { date: '2025\u201326', text: 'ArtCenter View Book' },
+        { date: '2024', text: 'Graphic Design USA, Student to Watch' },
+        { date: '2024', text: 'Graphis Blog, ArtCenter Student\u2019s Platinum Brand Play' },
+        { date: '2024', text: 'Indigo Design Award Interview with Alan Xu' },
+        { date: '2024', text: 'Graphis Blog, New Talent Elevates Their Design Game' }
+      ]
+    }
+  ];
+
+  resumeData.forEach(section => {
+    const sectionDiv = document.createElement('div');
+    sectionDiv.className = 'resume-section';
+
+    section.entries.forEach((entry, i) => {
+      const row = document.createElement('div');
+      row.className = 'resume-row' + (section.type === 'simple' ? ' resume-row-compact' : '');
+
+      const col1 = document.createElement('div');
+      col1.className = 'h2';
+      if (i === 0) col1.textContent = section.section;
+      row.appendChild(col1);
+
+      const col2 = document.createElement('div');
+      col2.className = 'h2';
+      col2.textContent = entry.date;
+      row.appendChild(col2);
+
+      const col3 = document.createElement('div');
+      if (entry.title) {
+        const t = document.createElement('div');
+        t.className = 'h2';
+        t.textContent = entry.title;
+        col3.appendChild(t);
+        const l = document.createElement('div');
+        l.className = 'h2';
+        l.textContent = entry.location;
+        col3.appendChild(l);
+        const d = document.createElement('div');
+        d.className = 'caption';
+        d.textContent = entry.desc;
+        col3.appendChild(d);
+      } else {
+        col3.className = 'h2';
+        col3.textContent = entry.text;
+      }
+      row.appendChild(col3);
+
+      sectionDiv.appendChild(row);
+    });
+
+    overlayBody.appendChild(sectionDiv);
+  });
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');

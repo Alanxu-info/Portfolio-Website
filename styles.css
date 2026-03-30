@@ -249,6 +249,32 @@ body {
 }
 
 
+/* ── Resume ─────────────────────────────────────────────── */
+
+.resume-section {
+  margin-bottom: 20px;
+}
+
+.resume-section:last-child {
+  margin-bottom: 0;
+}
+
+.resume-row {
+  display: grid;
+  grid-template-columns: 110px 140px 1fr;
+  gap: 0 10px;
+  margin-bottom: 10px;
+}
+
+.resume-row:last-child {
+  margin-bottom: 0;
+}
+
+.resume-row-compact {
+  margin-bottom: 2px;
+}
+
+
 /* ── Project overlay ─────────────────────────────────────── */
 
 #project-overlay {
@@ -338,5 +364,10 @@ body {
     height: auto;
     top: 42px;
     bottom: 0;
+  }
+
+  .resume-row {
+    grid-template-columns: 80px 100px 1fr;
+    gap: 0 6px;
   }
 }
