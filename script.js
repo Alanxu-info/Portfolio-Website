@@ -24,7 +24,10 @@ function openPanel(panel) {
   panel.style.width  = '300px';
   panel.style.height = targetH + 'px';
 
-  setTimeout(() => { panel.style.width = ''; }, 350);
+  setTimeout(() => {
+    panel.style.width  = '';
+    panel.style.height = '';
+  }, 350);
 }
 
 function closePanel(panel) {
