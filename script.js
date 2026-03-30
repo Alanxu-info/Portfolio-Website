@@ -197,15 +197,12 @@ let currentSlug    = null;
 function openResumeOverlay() {
   currentSlug = '__resume__';
   overlayBody.innerHTML = '';
-  overlayBody.style.padding = '0';
-  overlay.style.backgroundColor = '#ffffff';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
-  const embed = document.createElement('embed');
-  embed.src = 'Other Assets/AX_Resume_26.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-  embed.type = 'application/pdf';
-  embed.style.cssText = 'width:100%;height:100%;display:block;border:none;';
-  overlayBody.appendChild(embed);
+  const img = document.createElement('img');
+  img.src = 'Other Assets/AX_Resume_26.jpg';
+  img.style.cssText = 'width:100%;display:block;';
+  overlayBody.appendChild(img);
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
@@ -217,8 +214,6 @@ async function openOverlay(title, slug) {
 
   currentSlug = slug;
   overlayBody.innerHTML = '';
-  overlayBody.style.padding = '';
-  overlay.style.backgroundColor = '';
 
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
@@ -298,8 +293,6 @@ async function openOverlay(title, slug) {
 
 function closeOverlay() {
   overlay.classList.remove('is-open');
-  overlay.style.backgroundColor = '';
-  overlayBody.style.padding = '';
   document.getElementById('bg-grid').classList.remove('blurred');
   currentSlug = null;
 }
