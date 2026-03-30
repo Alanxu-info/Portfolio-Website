@@ -129,14 +129,6 @@ function buildInfoPanel() {
   addSection("What I'm doing right now:", textEl('Stressing about graduation'));
   addSection('Specialization:', textEl('Branding, Motion, Typography'));
   addSection('Email:', linkEl('hello@alanxu.info', 'mailto:hello@alanxu.info'));
-  const linksDiv = document.createElement('div');
-  linksDiv.className = 'info-section';
-  [
-    linkEl('Resume', null, openResumeOverlay),
-    linkEl('LinkedIn', 'https://www.linkedin.com/in/alan-xu-3093541b7/'),
-    linkEl('Instagram', 'https://www.instagram.com/alanxu.info/')
-  ].forEach(el => linksDiv.appendChild(el));
-  infoContent.appendChild(linksDiv);
 
   // Bio image — preload so scrollHeight is accurate when panel opens
   const bioImg = document.createElement('img');
@@ -148,7 +140,16 @@ function buildInfoPanel() {
     bioImg.addEventListener('load',  () => { infoBtn.style.pointerEvents = ''; }, { once: true });
     bioImg.addEventListener('error', () => { infoBtn.style.pointerEvents = ''; }, { once: true });
   }
-  addSection(null, bioImg);
+  addSection('Short Bio:', bioImg);
+
+  const linksDiv = document.createElement('div');
+  linksDiv.className = 'info-section';
+  [
+    linkEl('Resume', null, openResumeOverlay),
+    linkEl('LinkedIn', 'https://www.linkedin.com/in/alan-xu-3093541b7/'),
+    linkEl('Instagram', 'https://www.instagram.com/alanxu.info/')
+  ].forEach(el => linksDiv.appendChild(el));
+  infoContent.appendChild(linksDiv);
 }
 
 buildInfoPanel();
@@ -196,17 +197,15 @@ let currentSlug    = null;
 function openResumeOverlay() {
   currentSlug = '__resume__';
   overlayBody.innerHTML = '';
+  overlayBody.style.padding = '0';
+  overlay.style.backgroundColor = '#ffffff';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
-  const titleEl = document.createElement('p');
-  titleEl.className = 'h1';
-  titleEl.textContent = 'Resume';
-  overlayBody.appendChild(titleEl);
-
-  const iframe = document.createElement('iframe');
-  iframe.src = 'Other Assets/AX_Resume_26.pdf';
-  iframe.style.cssText = 'width:100%;height:calc(100% - 60px);border:none;';
-  overlayBody.appendChild(iframe);
+  const embed = document.createElement('embed');
+  embed.src = 'Other Assets/AX_Resume_26.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
+  embed.type = 'application/pdf';
+  embed.style.cssText = 'width:100%;height:100%;display:block;border:none;';
+  overlayBody.appendChild(embed);
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
@@ -218,6 +217,8 @@ async function openOverlay(title, slug) {
 
   currentSlug = slug;
   overlayBody.innerHTML = '';
+  overlayBody.style.padding = '';
+  overlay.style.backgroundColor = '';
 
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
@@ -297,6 +298,8 @@ async function openOverlay(title, slug) {
 
 function closeOverlay() {
   overlay.classList.remove('is-open');
+  overlay.style.backgroundColor = '';
+  overlayBody.style.padding = '';
   document.getElementById('bg-grid').classList.remove('blurred');
   currentSlug = null;
 }
