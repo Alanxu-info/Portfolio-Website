@@ -378,6 +378,12 @@ body {
   gap: 10px;
 }
 
+.media-gallery-8 {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 10px;
+}
+
 #overlay-body > .overlay-description {
   margin-bottom: 30px;
 }
@@ -395,6 +401,10 @@ body {
   }
 
   .media-gallery-5 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .media-gallery-8 {
     grid-template-columns: repeat(4, 1fr);
   }
 
