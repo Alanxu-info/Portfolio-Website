@@ -147,6 +147,7 @@ function buildGrid() {
   numRows = Math.ceil(window.innerHeight / STEP) + 3;
 
   const entries = [];
+  const recent = [];
 
   for (let r = 0; r < numRows; r++) {
     for (let c = 0; c < numCols; c++) {
@@ -158,7 +159,16 @@ function buildGrid() {
       container.appendChild(tile);
       tiles.push(tile);
 
-      const item = media[Math.floor(Math.random() * media.length)];
+      let item;
+      const available = media.filter(m => !recent.includes(m.src));
+      if (available.length) {
+        item = available[Math.floor(Math.random() * available.length)];
+      } else {
+        item = media[Math.floor(Math.random() * media.length)];
+      }
+      recent.push(item.src);
+      if (recent.length > 5) recent.shift();
+
       const name = item.src.split('/').pop();
 
       if (!isTouchDevice) {

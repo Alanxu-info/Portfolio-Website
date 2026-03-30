@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -432,5 +432,10 @@ body.comic-sans * {
 
   .resume-columns {
     grid-template-columns: 1fr;
+  }
+
+  body.comic-sans,
+  body.comic-sans * {
+    font-weight: 700 !important;
   }
 }
