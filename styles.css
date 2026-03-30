@@ -282,6 +282,11 @@ body {
 }
 
 
+.mobile-only {
+  display: none;
+}
+
+
 /* ── Project overlay ─────────────────────────────────────── */
 
 #project-overlay {
@@ -403,6 +408,14 @@ body {
     height: auto;
     top: 42px;
     bottom: 0;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
+  .desktop-only {
+    display: none !important;
   }
 
   .resume-columns {
