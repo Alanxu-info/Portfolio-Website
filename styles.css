@@ -405,6 +405,10 @@ body {
     bottom: 0;
   }
 
+  .media-duo {
+    grid-template-columns: 1fr;
+  }
+
   .resume-columns {
     grid-template-columns: 1fr;
   }
