@@ -141,16 +141,14 @@ function buildInfoPanel() {
   // Bio image — preload so scrollHeight is accurate when panel opens
   const bioImg = document.createElement('img');
   bioImg.className = 'info-value info-bio-img';
-  const bioSrc = 'graphic design is my passion.png';
-  bioImg.src = bioSrc;
-  // Disable info button until image is loaded
+  bioImg.src = 'Other Assets/graphic design is my passion.png';
   const infoBtn = document.getElementById('info-btn');
   if (!bioImg.complete) {
     infoBtn.style.pointerEvents = 'none';
     bioImg.addEventListener('load',  () => { infoBtn.style.pointerEvents = ''; }, { once: true });
     bioImg.addEventListener('error', () => { infoBtn.style.pointerEvents = ''; }, { once: true });
   }
-  addSection('Short Bio:', bioImg);
+  addSection(null, bioImg);
 }
 
 buildInfoPanel();
@@ -199,6 +197,17 @@ function openResumeOverlay() {
   currentSlug = '__resume__';
   overlayBody.innerHTML = '';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
+
+  const titleEl = document.createElement('p');
+  titleEl.className = 'h1';
+  titleEl.textContent = 'Resume';
+  overlayBody.appendChild(titleEl);
+
+  const iframe = document.createElement('iframe');
+  iframe.src = 'Other Assets/AX_Resume_26.pdf';
+  iframe.style.cssText = 'width:100%;height:calc(100% - 60px);border:none;';
+  overlayBody.appendChild(iframe);
+
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
 }
