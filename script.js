@@ -16,15 +16,18 @@ function openPanel(panel) {
 
   const targetH = panel.scrollHeight;
 
-  panel.style.width  = startW + 'px';
-  panel.style.height = startH + 'px';
+  panel.style.width = startW + 'px';
+  if (panel.id !== 'info-panel') panel.style.height = startH + 'px';
   void panel.offsetWidth;
 
   panel.classList.add('is-open');
-  panel.style.width  = '300px';
-  panel.style.height = panel.id === 'info-panel' ? '' : targetH + 'px';
+  panel.style.width = '300px';
+  if (panel.id !== 'info-panel') panel.style.height = targetH + 'px';
 
-  setTimeout(() => { panel.style.width = ''; }, 350);
+  setTimeout(() => {
+    panel.style.width = '';
+    if (panel.id !== 'info-panel') panel.style.height = '';
+  }, 350);
 }
 
 function closePanel(panel) {
