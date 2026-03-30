@@ -249,6 +249,35 @@ body {
 }
 
 
+/* ── Resume ─────────────────────────────────────────────── */
+
+.resume-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.resume-col-section {
+  margin-bottom: 30px;
+}
+
+.resume-col-section:last-child {
+  margin-bottom: 0;
+}
+
+.resume-col-section-title {
+  margin-bottom: 15px;
+}
+
+.resume-entry {
+  margin-bottom: 15px;
+}
+
+.resume-entry:last-child {
+  margin-bottom: 0;
+}
+
+
 /* ── Project overlay ─────────────────────────────────────── */
 
 #project-overlay {
@@ -338,5 +367,9 @@ body {
     height: auto;
     top: 42px;
     bottom: 0;
+  }
+
+  .resume-columns {
+    grid-template-columns: 1fr;
   }
 }

@@ -197,14 +197,199 @@ let currentSlug    = null;
 function openResumeOverlay() {
   currentSlug = '__resume__';
   overlayBody.innerHTML = '';
-  overlayBody.style.padding = '0';
-  overlayBody.style.overflowY = 'hidden';
+  overlayBody.style.overflowY = '';
+  overlayBody.style.padding = '';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
-  const img = document.createElement('img');
-  img.src = 'Other Assets/AX_Resume_26.png';
-  img.style.cssText = 'width:100%;display:block;';
-  overlayBody.appendChild(img);
+  function makeEntry(lines) {
+    const div = document.createElement('div');
+    div.className = 'resume-entry';
+    lines.forEach(({ text, cls }) => {
+      const p = document.createElement('div');
+      p.className = cls;
+      p.textContent = text;
+      div.appendChild(p);
+    });
+    return div;
+  }
+
+  function makeSection(title, entries) {
+    const div = document.createElement('div');
+    div.className = 'resume-col-section';
+    const h = document.createElement('div');
+    h.className = 'h2 resume-col-section-title';
+    h.textContent = title;
+    div.appendChild(h);
+    entries.forEach(e => div.appendChild(e));
+    return div;
+  }
+
+  function makeAwardEntry(text, date) {
+    const div = document.createElement('div');
+    div.className = 'resume-entry';
+    const t = document.createElement('span');
+    t.className = 'h2';
+    t.textContent = text + ' ';
+    div.appendChild(t);
+    const d = document.createElement('span');
+    d.className = 'caption';
+    d.textContent = date;
+    div.appendChild(d);
+    return div;
+  }
+
+  function makeSimpleEntry(date, text) {
+    const div = document.createElement('div');
+    div.className = 'resume-entry';
+    const d = document.createElement('span');
+    d.className = 'h2';
+    d.textContent = date + ', ';
+    div.appendChild(d);
+    const t = document.createElement('span');
+    t.className = 'h2';
+    t.textContent = text;
+    div.appendChild(t);
+    return div;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'resume-columns';
+
+  // Column 1: Education
+  const col1 = document.createElement('div');
+  col1.appendChild(makeSection('Education', [
+    makeEntry([
+      { text: 'Sept 2020 \u2013 April 2026', cls: 'h2' },
+      { text: 'ArtCenter College of Design', cls: 'h2' },
+      { text: 'Pasadena, CA', cls: 'h2' },
+      { text: 'Bachelor of Fine Arts in Graphic Design', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Sept 2019 \u2013 May 2020', cls: 'h2' },
+      { text: 'Woodbury University', cls: 'h2' },
+      { text: 'Burbank, CA', cls: 'h2' },
+      { text: 'Bachelor of Interdisciplinary Study', cls: 'caption' }
+    ])
+  ]));
+  grid.appendChild(col1);
+
+  // Column 2: Experience
+  const col2 = document.createElement('div');
+  col2.appendChild(makeSection('Experience', [
+    makeEntry([
+      { text: 'Sept 2020 \u2013 Ongoing', cls: 'h2' },
+      { text: 'Freelance Graphic & Motion Designer', cls: 'h2' },
+      { text: 'Independent', cls: 'h2' },
+      { text: 'Design print, motion, interaction, and brand systems for startups and agencies in gaming, tech, fine art, and entertainment.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2020 \u2013 April 2026', cls: 'h2' },
+      { text: 'Teaching Assistant', cls: 'h2' },
+      { text: 'ArtCenter College of Design, Los Angeles, CA', cls: 'h2' },
+      { text: 'Assisted faculty across undergraduate and graduate design courses, leading critiques and supporting concept and system development across print, motion, and transmedia. Provided technical and conceptual guidance during reviews and production.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2026 \u2013 Feb 2026 / Feb 2024 \u2013 Mar 2024', cls: 'h2' },
+      { text: 'Freelance Graphic Designer', cls: 'h2' },
+      { text: 'Massive Assembly, Los Angeles, CA', cls: 'h2' },
+      { text: 'Developed brand identity systems for Riot Games\u2019 2024 VALORANT World Championship Tour and League of Legends MSI 26, producing scalable assets for global event branding.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'May 2023 \u2013 Sept 2023', cls: 'h2' },
+      { text: 'Graphic Design Intern', cls: 'h2' },
+      { text: 'Massive Assembly', cls: 'h2' },
+      { text: 'Designed a 250-page process book documenting four cinematic projects from concept to final render. Created internal motion assets for presentations and communications.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Oct 2025 \u2013 Dec 2025', cls: 'h2' },
+      { text: 'Design Residency', cls: 'h2' },
+      { text: 'Fork, Seoul, Korea', cls: 'h2' },
+      { text: 'Developed original work with guidance from designer Moonsick Gang from research and experimentation through production and public exhibition.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'May 2025 \u2013 Aug 2025', cls: 'h2' },
+      { text: 'Berlin Study Away', cls: 'h2' },
+      { text: 'ArtCenter College of Design, Berlin, Germany', cls: 'h2' },
+      { text: 'Developed a body of design work informed by direct engagement with research on Berlin\u2019s cultural, social, and urban infrastructures during a three-month study-away semester.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2025 \u2013 May 2025', cls: 'h2' },
+      { text: 'Freelance Junior Motion Designer', cls: 'h2' },
+      { text: 'Hornet, New York, NY', cls: 'h2' },
+      { text: 'Designed and animated motion graphics for internal and external projects in collaboration with the studio team. Contributed to client-facing work for brands including Apple, Sonic, and Buffalo Wild Wings.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2025 \u2013 May 2025', cls: 'h2' },
+      { text: 'Freelance Graphic & Motion Designer', cls: 'h2' },
+      { text: '10 Summers/DJ Mustard, Los Angeles, CA', cls: 'h2' },
+      { text: 'Designed brand and identity system for DJ Mustard, including logo, typography, 2D and 3D animation, vinyl album artwork, title cards, and supporting visual assets.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'April 2024 \u2013 Aug 2024', cls: 'h2' },
+      { text: 'Sponsored Studio', cls: 'h2' },
+      { text: 'Samsung x ArtCenter, Los Angeles, CA', cls: 'h2' },
+      { text: 'Collaborated cross-disciplinarily on a hypothetical Samsung Galaxy campaign, designing a complete brand identity system to support product concepts and visuals.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'May 2021 \u2013 April 2025', cls: 'h2' },
+      { text: 'Graphic Design Department Events Team Lead', cls: 'h2' },
+      { text: 'ArtCenter College of Design, Los Angeles, CA', cls: 'h2' },
+      { text: 'Designed and managed the ArtCenter Designer Speaker Series, coordinating outreach to international designers and producing promotional assets for department events and communications.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2022 \u2013 May 2022', cls: 'h2' },
+      { text: 'Orientation Leader', cls: 'h2' },
+      { text: 'ArtCenter College of Design, Los Angeles, CA', cls: 'h2' },
+      { text: 'Assisted incoming students in navigating the academic, social, and cultural environment of ArtCenter. Designed digital assets to support orientation programming and communications.', cls: 'caption' }
+    ]),
+    makeEntry([
+      { text: 'Jan 2021 \u2013 Jan 2022', cls: 'h2' },
+      { text: 'Graphic Design Representative', cls: 'h2' },
+      { text: 'ArtCenter College of Design, Los Angeles, CA', cls: 'h2' },
+      { text: 'Organized events and workshops, addressed student feedback with strategic solutions, and collaborated with other department representatives and chairs to enhance the ArtCenter experience.', cls: 'caption' }
+    ])
+  ]));
+  grid.appendChild(col2);
+
+  // Column 3: Awards, Exhibition, Press
+  const col3 = document.createElement('div');
+
+  col3.appendChild(makeSection('Awards & Recognition', [
+    makeAwardEntry('Communication Arts, Typography Annual', '2025'),
+    makeAwardEntry('Communication Arts, Design Annual x2', '2024'),
+    makeAwardEntry('World\u2019s Best Typography 45, Judge\u2019s Choice', '2024'),
+    makeAwardEntry('TDC Young Ones, Top 3 + Winner Brand & Identity + Winner Motion', '2024'),
+    makeAwardEntry('ADC Young Ones, Merit', '2024'),
+    makeAwardEntry('C2A, Best of Best in Animation + Winner Brand Identity', '2024'),
+    makeAwardEntry('Kyoto Global Design Awards, Visual Winner x3', '2024'),
+    makeAwardEntry('Core77, Brand and Identity Student Winner + Communication Design Student Notable', '2024\u201323'),
+    makeAwardEntry('Graphis New Talent, Platinum + Gold x2 + Silver', '2024\u201323'),
+    makeAwardEntry('DNA Paris, Communication + Branding Communication + Typography x2', '2024'),
+    makeAwardEntry('Design MasterPrize, Best of Best Brand Identity', '2024'),
+    makeAwardEntry('IDA, Bronze', '2024'),
+    makeAwardEntry('Indigo Design Award, Gold Computer Animation + Silver Branding x2', '2024'),
+    makeAwardEntry('Cidea Design Award, NewStar Award + Design Award', '2024'),
+    makeAwardEntry('World Brand Design Society, Bronze', '2024')
+  ]));
+
+  col3.appendChild(makeSection('Exhibition', [
+    makeSimpleEntry('2026', 'Fork Unfolding #3, Seoul Korea'),
+    makeSimpleEntry('2024\u201325', 'TDC70 Traveling Exhibition, ENCO'),
+    makeSimpleEntry('2024', 'HMCT Gallery, Another Specimen Poster, LA'),
+    makeSimpleEntry('2021\u201322', 'ArtCenter Student Gallery, SU21 Poster, LA')
+  ]));
+
+  col3.appendChild(makeSection('Press', [
+    makeSimpleEntry('2025', 'Bold Journey, Meet Alan Xu'),
+    makeSimpleEntry('2025\u201326', 'ArtCenter View Book'),
+    makeSimpleEntry('2024', 'Graphic Design USA, Student to Watch'),
+    makeSimpleEntry('2024', 'Graphis Blog, ArtCenter Student\u2019s Platinum Brand Play'),
+    makeSimpleEntry('2024', 'Indigo Design Award Interview with Alan Xu'),
+    makeSimpleEntry('2024', 'Graphis Blog, New Talent Elevates Their Design Game')
+  ]));
+
+  grid.appendChild(col3);
+  overlayBody.appendChild(grid);
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
