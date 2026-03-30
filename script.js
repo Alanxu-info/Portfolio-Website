@@ -201,11 +201,10 @@ function openResumeOverlay() {
   overlayBody.style.overflowY = 'hidden';
   if (window.innerWidth <= 768 && infoPanel.classList.contains('is-open')) closePanel(infoPanel);
 
-  const embed = document.createElement('embed');
-  embed.src = 'Other Assets/AX_Resume_26.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH';
-  embed.type = 'application/pdf';
-  embed.style.cssText = 'width:100%;height:100%;display:block;border:none;background-color:#D7D7D7;';
-  overlayBody.appendChild(embed);
+  const img = document.createElement('img');
+  img.src = 'Other Assets/AX_Resume_26.png';
+  img.style.cssText = 'width:100%;display:block;';
+  overlayBody.appendChild(img);
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
