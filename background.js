@@ -317,12 +317,4 @@ async function initBackground() {
   setInterval(checkForNewMedia, POLL_MS);
 }
 
-function pauseBgVideos() {
-  container.querySelectorAll('video').forEach(v => v.pause());
-}
-
-function resumeBgVideos() {
-  container.querySelectorAll('video').forEach(v => v.play().catch(() => {}));
-}
-
 initBackground();

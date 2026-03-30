@@ -386,7 +386,6 @@ function openResumeOverlay() {
 
   overlay.classList.add('is-open');
   document.getElementById('bg-grid').classList.add('blurred');
-  pauseBgVideos();
 }
 
 async function openOverlay(title, slug) {
@@ -507,7 +506,6 @@ function closeOverlay() {
   overlayBody.style.padding = '';
   overlayBody.style.overflowY = '';
   document.getElementById('bg-grid').classList.remove('blurred');
-  resumeBgVideos();
   currentSlug = null;
 }
 
