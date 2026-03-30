@@ -419,9 +419,14 @@ async function openOverlay(title, slug) {
     cats.textContent = data.categories.join(', ');
     overlayBody.appendChild(cats);
 
-    const desc = document.createElement('p');
+    const desc = document.createElement('div');
     desc.className = 'h2 overlay-description';
-    desc.textContent = data.description;
+    data.description.split('\n\n').forEach((para, i, arr) => {
+      const p = document.createElement('p');
+      p.textContent = para;
+      if (i < arr.length - 1) p.style.marginBottom = '10px';
+      desc.appendChild(p);
+    });
     overlayBody.appendChild(desc);
 
     data.media.forEach(item => {
