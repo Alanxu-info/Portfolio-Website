@@ -171,9 +171,7 @@ function buildGrid() {
         tile.style.cursor = 'pointer';
         tile.addEventListener('click', e => {
           e.stopPropagation();
-          document.body.style.fontFamily = document.body.style.fontFamily === '"Comic Sans MS", cursive'
-            ? "'Inter', sans-serif"
-            : '"Comic Sans MS", cursive';
+          const isComic = document.body.classList.toggle('comic-sans');
         });
       }
 
