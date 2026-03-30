@@ -429,7 +429,6 @@ async function openOverlay(title, slug) {
     });
     overlayBody.appendChild(desc);
 
-    let firstYoutube = true;
     data.media.forEach(item => {
       let el;
       if (item.type === 'image') {
@@ -483,17 +482,9 @@ async function openOverlay(title, slug) {
         el = document.createElement('div');
         el.style.cssText = 'position:relative;width:100%;aspect-ratio:16/9;';
         const iframe = document.createElement('iframe');
-        const sep = item.src.includes('?') ? '&' : '?';
-        if (firstYoutube) {
-          const videoId = item.src.split('/embed/')[1]?.split('?')[0] || '';
-          iframe.src = item.src + sep + 'autoplay=1&mute=1&playsinline=1&loop=1&playlist=' + videoId;
-          iframe.allow = 'autoplay; accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-          firstYoutube = false;
-        } else {
-          iframe.src = item.src + sep + 'autoplay=0';
-          iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        }
+        iframe.src = item.src + '?autoplay=0';
         iframe.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;border:none;';
+        iframe.allow = 'accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
         iframe.allowFullscreen = true;
         el.appendChild(iframe);
       }
