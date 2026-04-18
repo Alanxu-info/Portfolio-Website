@@ -430,7 +430,7 @@ function showMeLightbox(src) {
   const img = document.createElement('img');
   img.src = src;
   img.style.cssText = 'width:65vw;max-height:90vh;object-fit:contain;pointer-events:none;';
-  if (window.innerWidth <= 768) img.style.width = '95vw';
+  if (window.innerWidth <= 768) img.style.width = '90vw';
   backdrop.appendChild(img);
 
   document.getElementById('bg-grid').classList.add('blurred');
