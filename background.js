@@ -236,6 +236,14 @@ function buildGrid() {
         });
       }
 
+      if (name === 'me.jpg') {
+        tile.style.cursor = 'pointer';
+        tile.addEventListener('click', e => {
+          e.stopPropagation();
+          showMeLightbox(item.src);
+        });
+      }
+
       if (name === 'AMONGUS.jpg') {
         tile.style.cursor = 'pointer';
         tile.addEventListener('click', e => {
@@ -406,6 +414,35 @@ function bindDrag() {
     isDragging = false;
     vx = dragVX; vy = dragVY;
   });
+}
+
+
+/* ── Me lightbox ────────────────────────────────────────── */
+
+function showMeLightbox(src) {
+  const existing = document.getElementById('me-lightbox');
+  if (existing) existing.remove();
+
+  const backdrop = document.createElement('div');
+  backdrop.id = 'me-lightbox';
+  backdrop.style.cssText = 'position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;cursor:pointer;';
+
+  const img = document.createElement('img');
+  img.src = src;
+  img.style.cssText = 'width:65vw;max-height:90vh;object-fit:contain;pointer-events:none;';
+  if (window.innerWidth <= 768) img.style.width = '90vw';
+  backdrop.appendChild(img);
+
+  document.getElementById('bg-grid').classList.add('blurred');
+
+  backdrop.addEventListener('click', () => {
+    backdrop.remove();
+    if (!document.getElementById('project-overlay').classList.contains('is-open')) {
+      document.getElementById('bg-grid').classList.remove('blurred');
+    }
+  }, { once: true });
+
+  document.body.appendChild(backdrop);
 }
 
 
