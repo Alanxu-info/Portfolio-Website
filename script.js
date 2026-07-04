@@ -136,6 +136,7 @@ function buildInfoPanel() {
   dayJobLink.href = 'https://dayjob.work';
   dayJobLink.target = '_blank';
   dayJobLink.rel = 'noopener';
+  dayJobLink.style.display = 'inline';
   dayJobLink.style.textDecoration = 'underline';
   nowEl.appendChild(dayJobLink);
   addSection("What I'm doing right now:", nowEl);
@@ -172,6 +173,7 @@ function buildInfoPanel() {
   const resumeText = document.createElement('span');
   resumeText.className = 'h2 info-link resume-btn-text';
   resumeText.textContent = 'Click here for a lot more info';
+  resumeText.style.textDecoration = 'underline';
   resumeWrapper.appendChild(resumeText);
   // Insert wrapper at end of previous section
   const bioSection = infoContent.lastElementChild;
@@ -431,6 +433,7 @@ function openResumeOverlay() {
   ]));
 
   col3.appendChild(makeSection('Press', [
+    makeCompactEntry('Site of Sites, Feature', '2026'),
     makeCompactEntry('Bold Journey, Meet Alan Xu', '2025'),
     makeCompactEntry('ArtCenter View Book', '2025\u201326'),
     makeCompactEntry('Graphic Design USA, Student to Watch', '2024'),
