@@ -127,7 +127,18 @@ function buildInfoPanel() {
   setInterval(updateClock, 1000);
   addSection('Current Time & Location:', clock);
 
-  addSection("What I'm doing right now:", textEl('Stressing about graduation'));
+  const nowEl = document.createElement('span');
+  nowEl.className = 'info-value h2';
+  nowEl.appendChild(document.createTextNode('Larping at '));
+  const dayJobLink = document.createElement('a');
+  dayJobLink.className = 'info-value h2 info-link';
+  dayJobLink.textContent = 'Day Job';
+  dayJobLink.href = 'https://dayjob.work';
+  dayJobLink.target = '_blank';
+  dayJobLink.rel = 'noopener';
+  dayJobLink.style.textDecoration = 'underline';
+  nowEl.appendChild(dayJobLink);
+  addSection("What I'm doing right now:", nowEl);
   addSection('Specialization:', textEl('Branding, Motion, Typography'));
   addSection('Email:', linkEl('hello@alanxu.info', 'mailto:hello@alanxu.info'));
 
