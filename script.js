@@ -128,8 +128,26 @@ function buildInfoPanel() {
   addSection('Current Time & Location:', clock);
 
   addSection("What I'm doing right now:", textEl('Moving to NY'));
-  addSection('Specialization:', textEl('Branding, Motion, Typography'));
+  addSection('Specialization:', textEl('Branding, Motion, Typography, Vibe Coding'));
   addSection('Email:', linkEl('hello@alanxu.info', 'mailto:hello@alanxu.info'));
+
+  // Bio image — preload so scrollHeight is accurate when panel opens
+  const bioImg = document.createElement('img');
+  bioImg.className = 'info-value info-bio-img';
+  bioImg.src = 'Other Assets/graphic design is my passion.png';
+  const infoBtn = document.getElementById('info-btn');
+  if (!bioImg.complete) {
+    infoBtn.style.pointerEvents = 'none';
+    const enableBtn = () => { infoBtn.style.pointerEvents = ''; };
+    bioImg.addEventListener('load',  enableBtn, { once: true });
+    bioImg.addEventListener('error', enableBtn, { once: true });
+    setTimeout(enableBtn, 3000);
+  }
+  bioImg.style.cursor = 'pointer';
+  bioImg.addEventListener('click', openResumeOverlay);
+  addSection('Short Bio:', bioImg);
+  // Remove gap between bio image and links
+  bioImg.parentElement.style.marginBottom = '0';
 
   const linksDiv = document.createElement('div');
   linksDiv.className = 'info-section';
@@ -137,12 +155,18 @@ function buildInfoPanel() {
   resumeWrapper.className = 'resume-btn-wrapper';
   resumeWrapper.style.cursor = 'pointer';
   resumeWrapper.addEventListener('click', openResumeOverlay);
+  // Move bio image into the wrapper
+  bioImg.parentElement.removeChild(bioImg);
+  resumeWrapper.appendChild(bioImg);
   const resumeText = document.createElement('span');
   resumeText.className = 'h2 info-link resume-btn-text';
   resumeText.textContent = 'Click here for a lot more info';
   resumeText.style.textDecoration = 'underline';
   resumeWrapper.appendChild(resumeText);
-  linksDiv.appendChild(resumeWrapper);
+  // Insert wrapper at end of previous section
+  const bioSection = infoContent.lastElementChild;
+  bioSection.appendChild(resumeWrapper);
+  bioSection.style.marginBottom = '0';
   linksDiv.appendChild(document.createElement('br'));
   linksDiv.appendChild(linkEl('LinkedIn', 'https://www.linkedin.com/in/alan-xu-3093541b7/'));
   linksDiv.appendChild(linkEl('Instagram', 'https://www.instagram.com/alanxu.info/'));
@@ -405,17 +429,6 @@ function openResumeOverlay() {
     makeCompactEntry('Indigo Design Award, Interview with Alan Xu', '2024'),
     makeCompactEntry('Graphis Blog, New Talent Elevates Their Design Game', '2024')
   ]));
-
-  const statement = document.createElement('div');
-  statement.className = 'h2 overlay-description';
-  const para1 = document.createElement('p');
-  para1.textContent = 'Finding light in what feels impossible is what drives my work. When nothing works, I step back. I take a breath and look at the problem from a different angle. There is always another perspective, another possibility.';
-  const para2 = document.createElement('p');
-  para2.textContent = 'The challenge isn\u2019t avoiding difficulty, it\u2019s looking at it from another direction to recognize the hidden opportunity. That\u2019s how I approach design. I don\u2019t settle when something feels stuck. I reframe it. I refine it. I work until confusion becomes clarity and obstacles become opportunities.';
-  para1.style.marginBottom = '10px';
-  statement.appendChild(para1);
-  statement.appendChild(para2);
-  overlayBody.appendChild(statement);
 
   grid.appendChild(col3);
   overlayBody.appendChild(grid);
