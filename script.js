@@ -119,9 +119,9 @@ function buildInfoPanel() {
   clock.className = 'info-value h2';
   function updateClock() {
     clock.textContent = new Date().toLocaleTimeString('en-US', {
-      timeZone: 'America/Los_Angeles',
+      timeZone: 'America/New_York',
       hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit'
-    }) + ' Los Angeles';
+    }) + ' New York';
   }
   updateClock();
   setInterval(updateClock, 1000);
