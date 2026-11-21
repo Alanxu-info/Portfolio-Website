@@ -325,6 +325,12 @@ function openResumeOverlay() {
       { text: 'Design print, motion, interaction, and brand systems for startups and agencies in gaming, tech, fine art, and entertainment.', cls: 'caption' }
     ]),
     makeEntry([
+      { text: 'June 2026 – Ongoing', cls: 'h2' },
+      { text: 'Resident Brand Designer', cls: 'h2' },
+      { text: 'Day Job, Los Angeles, CA', cls: 'h2' },
+      { text: 'My 9 to 5 day job at Day Job. Sick branding and motion projects with super funny team. Also doing massive house keeping organizing over 200+ past projects. I crashed figma 50+ times.', cls: 'caption' }
+    ]),
+    makeEntry([
       { text: 'Jan 2020 \u2013 April 2026', cls: 'h2' },
       { text: 'Teaching Assistant', cls: 'h2' },
       { text: 'ArtCenter College of Design, Los Angeles, CA', cls: 'h2' },
