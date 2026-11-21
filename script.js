@@ -131,23 +131,7 @@ function buildInfoPanel() {
   addSection('Specialization:', textEl('Branding, Motion, Typography, Vibe Coding'));
   addSection('Email:', linkEl('hello@alanxu.info', 'mailto:hello@alanxu.info'));
 
-  // Bio image — preload so scrollHeight is accurate when panel opens
-  const bioImg = document.createElement('img');
-  bioImg.className = 'info-value info-bio-img';
-  bioImg.src = 'Other Assets/graphic design is my passion.png';
-  const infoBtn = document.getElementById('info-btn');
-  if (!bioImg.complete) {
-    infoBtn.style.pointerEvents = 'none';
-    const enableBtn = () => { infoBtn.style.pointerEvents = ''; };
-    bioImg.addEventListener('load',  enableBtn, { once: true });
-    bioImg.addEventListener('error', enableBtn, { once: true });
-    setTimeout(enableBtn, 3000);
-  }
-  bioImg.style.cursor = 'pointer';
-  bioImg.addEventListener('click', openResumeOverlay);
-  addSection('Short Bio:', bioImg);
-  // Remove gap between bio image and links
-  bioImg.parentElement.style.marginBottom = '0';
+  addSection('Short Bio:', textEl('Getting use to east coast'));
 
   const linksDiv = document.createElement('div');
   linksDiv.className = 'info-section';
@@ -155,9 +139,6 @@ function buildInfoPanel() {
   resumeWrapper.className = 'resume-btn-wrapper';
   resumeWrapper.style.cursor = 'pointer';
   resumeWrapper.addEventListener('click', openResumeOverlay);
-  // Move bio image into the wrapper
-  bioImg.parentElement.removeChild(bioImg);
-  resumeWrapper.appendChild(bioImg);
   const resumeText = document.createElement('span');
   resumeText.className = 'h2 info-link resume-btn-text';
   resumeText.textContent = 'Click here for a lot more info';
