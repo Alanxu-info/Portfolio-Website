@@ -43,6 +43,10 @@
     { "type": "image", "src": "background/Case Study/VCT24/vct24-31.jpg" },
     { "type": "image", "src": "background/Case Study/VCT24/vct24-chrome.jpg" },
     { "type": "image", "src": "background/Case Study/VCT24/vct24_I like this one.jpg" },
+    { "type": "video", "src": "background/Case Study/MUSTARD/mustard-1.mp4" },
+    { "type": "video", "src": "background/Case Study/MUSTARD/mustard-2.mp4" },
+    { "type": "video", "src": "background/Case Study/MUSTARD/mustard-5.mp4" },
+    { "type": "image", "src": "background/Case Study/MUSTARD/mustard-12.jpg" },
     { "type": "image", "src": "background/me.jpg" },
     { "type": "image", "src": "background/Easter Eggs/AMONGUS.jpg" },
     { "type": "image", "src": "background/Easter Eggs/Click me-1.jpg" }
