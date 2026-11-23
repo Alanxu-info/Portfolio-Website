@@ -23,12 +23,12 @@
       "items": ["media/mustard-4.mp4", "media/mustard-5.mp4", "media/mustard-6.mp4"]
     },
     { "type": "video", "src": "media/mustard-7.mp4" },
-    { "type": "image", "src": "media/mustard-8.png" },
-    { "type": "image", "src": "media/mustard-9.png" },
-    { "type": "image", "src": "media/mustard-10.png" },
+    { "type": "image", "src": "media/mustard-8.jpg" },
+    { "type": "image", "src": "media/mustard-9.jpg" },
+    { "type": "image", "src": "media/mustard-10.jpg" },
     { "type": "video", "src": "media/mustard-11.mp4" },
-    { "type": "image", "src": "media/mustard-12.png" },
-    { "type": "image", "src": "media/mustard-13.png" },
+    { "type": "image", "src": "media/mustard-12.jpg" },
+    { "type": "image", "src": "media/mustard-13.jpg" },
     {
       "type": "duo-mobile-solo",
       "items": ["media/mustard-14.jpeg", "media/mustard-15.jpg"]
