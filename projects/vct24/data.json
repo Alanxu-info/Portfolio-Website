@@ -101,6 +101,7 @@
       "items": ["media/vct24-08.mp4", "media/vct24-09.mp4"]
     },
     { "type": "image", "src": "media/vct24-010.jpg" },
+    { "type": "video", "src": "media/vct24-11.mp4" },
     {
       "type": "gallery-4-nogap",
       "items": [
@@ -120,41 +121,41 @@
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-11.mp4", "media/vct24-12.jpg"]
+      "items": ["media/vct24-12.mp4", "media/vct24-13.jpg"]
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-13.jpg", "media/vct24-14.jpg"]
+      "items": ["media/vct24-14.jpg", "media/vct24-15.jpg"]
     },
-    { "type": "image", "src": "media/vct24-15.jpg" },
+    { "type": "image", "src": "media/vct24-16.jpg" },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-16.jpg", "media/vct24-17.jpg"]
+      "items": ["media/vct24-17.jpg", "media/vct24-18.jpg"]
     },
-    { "type": "image", "src": "media/vct24-18.jpg" },
     { "type": "image", "src": "media/vct24-19.jpg" },
     { "type": "image", "src": "media/vct24-20.jpg" },
+    { "type": "image", "src": "media/vct24-21.jpg" },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-21.jpg", "media/vct24-22.jpg"]
+      "items": ["media/vct24-22.jpg", "media/vct24-23.jpg"]
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-23.jpg", "media/vct24-24.jpg"]
+      "items": ["media/vct24-24.jpg", "media/vct24-25.jpg"]
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-25.jpg", "media/vct24-26.jpg"]
+      "items": ["media/vct24-26.jpg", "media/vct24-27.jpg"]
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-27.jpg", "media/vct24-28.jpg"]
+      "items": ["media/vct24-28.jpg", "media/vct24-29.jpg"]
     },
     {
       "type": "duo-mobile-solo",
-      "items": ["media/vct24-29.jpg", "media/vct24-30.jpg"]
+      "items": ["media/vct24-30.jpg", "media/vct24-31.jpg"]
     },
-    { "type": "image", "src": "media/vct24-31.jpg" }
+    { "type": "image", "src": "media/vct24-32.jpg" }
   ],
   "credits": [
     [
