@@ -1,0 +1,75 @@
+{
+  "title": "Mustard",
+  "categories": [
+    "Branding",
+    "Motion"
+  ],
+  "details": [
+    {
+      "heading": "Client",
+      "items": [
+        "10 Summers",
+        "Mustard"
+      ]
+    },
+    {
+      "heading": "Designed with",
+      "items": [
+        "Joshua Steinmetz"
+      ]
+    }
+  ],
+  "description": "Branding and visual identity for MUSTARD and his album Faith of a Mustard Seed.",
+  "media": [
+    {
+      "type": "video",
+      "src": "media/mustard-1.mp4"
+    },
+    {
+      "type": "duo",
+      "items": [
+        "media/mustard-2.mp4",
+        "media/mustard-3.mp4"
+      ]
+    },
+    {
+      "type": "trio",
+      "items": [
+        "media/mustard-4.mp4",
+        "media/mustard-5.mp4",
+        "media/mustard-6.mp4"
+      ]
+    },
+    {
+      "type": "video",
+      "src": "media/mustard-7.mp4"
+    },
+    {
+      "type": "image",
+      "src": "media/mustard-8.png"
+    },
+    {
+      "type": "image",
+      "src": "media/mustard-9.png"
+    },
+    {
+      "type": "image",
+      "src": "media/mustard-10.png"
+    },
+    {
+      "type": "image",
+      "src": "media/mustard-11.png"
+    },
+    {
+      "type": "image",
+      "src": "media/mustard-12.png"
+    },
+    {
+      "type": "duo",
+      "items": [
+        "media/mustard-13.jpeg",
+        "media/mustard-14.jpg"
+      ]
+    }
+  ]
+}
